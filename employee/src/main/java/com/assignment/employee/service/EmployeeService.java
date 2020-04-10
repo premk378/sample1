@@ -33,11 +33,11 @@ public class EmployeeService {
 		return lstEmployees;
 	}
 
-	public List<EmployeeDetails> getEmployeesAfterHireDate(String hireDate, Long salary) {
+	public List<EmployeeDetails> getEmployeesHiredAfterDate(String date, Long salary) {
 		List<EmployeeDetails> lstEmployees = new ArrayList<EmployeeDetails>();
 		String empSql = "SELECT E.FIRST_NAME,E.LAST_NAME,E.BIRTH_DATE,E.HIRE_DATE,E.EMP_NO,S.SALARY FROM EMPLOYEES E,SALARIES S WHERE E.HIRE_DATE>TO_DATE(?,?) AND S.EMP_NO=E.EMP_NO AND S.SALARY > ?";
 		try {
-			lstEmployees = jdbcTemplate.query(empSql, new Object[] { hireDate, dateFormat, salary },
+			lstEmployees = jdbcTemplate.query(empSql, new Object[] { date, dateFormat, salary },
 					new EmployeeDetailsMapper());
 		} catch (Exception ex) {
 			lstEmployees = null;

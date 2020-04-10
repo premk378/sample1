@@ -27,16 +27,16 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/employees")
-	public List<EmployeeDetails> getEmployeeAfterHireDate(@RequestParam String hireDate, @RequestParam Long salary)
+	public List<EmployeeDetails> getEmployeesHiredAfterDate(@RequestParam String date, @RequestParam Long salary)
 	{
-		List<EmployeeDetails> lstEmployees = employeeService.getEmployeesAfterHireDate(hireDate,salary);
+		List<EmployeeDetails> lstEmployees = employeeService.getEmployeesHiredAfterDate(date,salary);
 		return lstEmployees;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/deleteEmployees")
-	public String deleteEmployeeRecord(@RequestParam String hireDate)
+	public String deleteEmployeeRecord(@RequestParam String date)
 	{
-		String message = employeeService.deleteEmployeeRecord(hireDate);
+		String message = employeeService.deleteEmployeeRecord(date);
 		return message;
 	}
 		
