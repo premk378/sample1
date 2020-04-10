@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.assignment.employee.models.Employee;
+import com.assignment.employee.models.EmployeeDetails;
 import com.assignment.employee.service.EmployeeService;
 
 @RestController
@@ -26,9 +27,9 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/employees")
-	public List<Employee> getEmployeeBeforeHireDate(@RequestParam String hireDate, @RequestParam Long salary)
+	public List<EmployeeDetails> getEmployeeAfterHireDate(@RequestParam String hireDate, @RequestParam Long salary)
 	{
-		List<Employee> lstEmployees = employeeService.getEmployeesBeforeHireDate(hireDate,salary);
+		List<EmployeeDetails> lstEmployees = employeeService.getEmployeesAfterHireDate(hireDate,salary);
 		return lstEmployees;
 	}
 	

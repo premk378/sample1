@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.assignment.employee.models.Employee;
 
-public class EmployeeRowMapper implements RowMapper<Employee> {
+public class EmployeeMapper implements RowMapper<Employee> {
 
 	@Override
 	public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {

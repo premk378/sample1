@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.assignment.employee.mapper.EmployeeRowMapper;
+import com.assignment.employee.mapper.EmployeeDetailsMapper;
+import com.assignment.employee.mapper.EmployeeMapper;
 import com.assignment.employee.models.Employee;
+import com.assignment.employee.models.EmployeeDetails;
 
 @Service
 public class EmployeeService {
@@ -24,19 +26,19 @@ public class EmployeeService {
 		List<Employee> lstEmployees = new ArrayList<Employee>();
 		String getEmployeesSql = "SELECT E.FIRST_NAME,E.LAST_NAME,E.BIRTH_DATE FROM EMPLOYEES E,DEPARTMENTS D,DEPT_EMP DE WHERE D.DEPT_NO=DE.DEPT_NO AND E.EMP_NO=DE.EMP_NO AND D.DEPT_NO = ?";
 		try {
-			lstEmployees = jdbcTemplate.query(getEmployeesSql, new Object[] { departmentId }, new EmployeeRowMapper());
+			lstEmployees = jdbcTemplate.query(getEmployeesSql, new Object[] { departmentId }, new EmployeeMapper());
 		} catch (Exception ex) {
 			lstEmployees = null;
 		}
 		return lstEmployees;
 	}
 
-	public List<Employee> getEmployeesBeforeHireDate(String hireDate, Long salary) {
-		List<Employee> lstEmployees = new ArrayList<Employee>();
-		String empSql = "SELECT E.FIRST_NAME,E.LAST_NAME,E.BIRTH_DATE FROM EMPLOYEES E,SALARIES S WHERE E.HIRE_DATE<TO_DATE(?,?) AND S.EMP_NO=E.EMP_NO AND S.SALARY > ?";
+	public List<EmployeeDetails> getEmployeesAfterHireDate(String hireDate, Long salary) {
+		List<EmployeeDetails> lstEmployees = new ArrayList<EmployeeDetails>();
+		String empSql = "SELECT E.FIRST_NAME,E.LAST_NAME,E.BIRTH_DATE,E.HIRE_DATE,E.EMP_NO,S.SALARY FROM EMPLOYEES E,SALARIES S WHERE E.HIRE_DATE>TO_DATE(?,?) AND S.EMP_NO=E.EMP_NO AND S.SALARY > ?";
 		try {
 			lstEmployees = jdbcTemplate.query(empSql, new Object[] { hireDate, dateFormat, salary },
-					new EmployeeRowMapper());
+					new EmployeeDetailsMapper());
 		} catch (Exception ex) {
 			lstEmployees = null;
 		}
