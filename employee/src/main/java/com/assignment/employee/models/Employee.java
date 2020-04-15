@@ -22,4 +22,12 @@ public class Employee {
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+	public Employee(String firstName, String lastName, String dateOfBirth) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+	}
+	public Employee() {
+		
+	}
 }

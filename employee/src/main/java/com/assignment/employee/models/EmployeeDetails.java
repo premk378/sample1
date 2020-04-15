@@ -43,6 +43,18 @@ public class EmployeeDetails {
 	public void setHireDate(String hireDate) {
 		this.hireDate = hireDate;
 	}
+	public EmployeeDetails(Long empNo, String firstName, String lastName, String dateOfBirth, Long salary,
+			String hireDate) {
+		this.empNo = empNo;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+		this.hireDate = hireDate;
+	}
 	
-	
+	public EmployeeDetails()
+	{
+		
+	}
 }
